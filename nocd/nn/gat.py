@@ -3,8 +3,7 @@ import scipy.sparse  as sp
 from torch import spmm
 
 from nocd.utils import to_sparse_tensor
-from torch_geometric.nn import GATConv, GATv2Conv, GCNConv, TransformerConv
-from nocd.nn import  gcn
+
 import torch.nn.functional as F
 import torch
 import torch.nn as nn
@@ -17,21 +16,7 @@ def sparse_or_dense_dropout(x, p=0.5, training=True):
         return F.dropout(x, p=p, training=training)
 
 class GAT(nn.Module):
-    # def __init__(self, input_dim, hidden_dims, output_dim, dropout=0.5, batch_norm=False):
-    #     super().__init__()
-    #     # super().__init__(input_dim, hidden_dims, output_dim,dropout,batch_norm)
-    #     # super(GAT, self).__init__(input_dim, hidden_dims, output_dim)
-    #     self.dropout = dropout
-    #     self.layers = nn.ModuleList([GATConv(input_dim, hidden_dims,heads = 6,add_self_loops=False,concat = False ),GATConv(hidden_dims , output_dim, heads = 6,add_self_loops=False, concat = False )])
-    #     # self.batch_norm  = [nn.BatchNorm1d(128, affine=False, track_running_stats=False)]
-    #     if batch_norm:
-    #         # self.batch_norm = [
-    #         #     nn.BatchNorm1d(dim, affine=False, track_running_stats=False) for dim in hidden_dims
-    #         # ]
-    #         self.batch_norm  = [nn.BatchNorm1d(128, affine=False, track_running_stats=False)]
-    #     else:
-    #         self.batch_norm = None
-    #     #---corect
+    
 
     def __init__(self, input_dim, hidden_dims, output_dim, dropout=0.5, batch_norm=False):
         super().__init__()
